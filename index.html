@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Protocol 404-A.3</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #ff0000;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }.fade {
+  animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}
+
+.question-box {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+}
+
+.question-box img {
+  width: 80%;
+  max-width: 600px;
+  margin-bottom: 10px;
+  border: 2px solid #ff0000;
+  position: relative;
+}
+
+.black-bar {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+  width: 80%;
+  height: 15%;
+  background-color: black;
+}
+
+h1 {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  white-space: pre-line;
+}
+
+label {
+  margin-top: 10px;
+  font-size: 1em;
+  color: #ff0000;
+}
+
+input[type="text"] {
+  background-color: #111;
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  padding: 8px;
+  width: 300px;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff0000;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://files.catbox.moe/4nv3md.mp3" type="audio/mpeg">
+  </audio>  <div id="legalNotice" class="fade">
+    <h1>[! Legal Notice !]
+In accordance with Protocol 404-A.3, all interactions on this platform are subject to permanent archival.You have waived objection by decoding.
+
+This was never for you.</h1>
+
+  </div>  <div id="q1" class="question-box">
+    <div style="position:relative">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Lead_masks_case.jpg" alt="Lead Masks Bodies">
+      <div class="black-bar"></div>
+    </div>
+    <label>INTERROGATION NODE_1: What was the first public detail released about the Lead Masks Case?</label>
+    <input type="text" id="input1">
+    <button onclick="checkAnswer(1)">Submit</button>
+  </div>  <div id="q2" class="question-box">
+    <div style="position:relative">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Lead_masks_case.jpg" alt="Lead Masks Close-up">
+      <div class="black-bar"></div>
+    </div>
+    <label>NODE_2: What object was placed on their faces?</label>
+    <input type="text" id="input2">
+    <button onclick="checkAnswer(2)">Submit</button>
+  </div>  <div id="q3" class="question-box">
+    <div style="position:relative">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Black_Dahlia_Elizabeth_Short_crime_scene_1.jpg" alt="Black Dahlia Scene">
+      <div class="black-bar"></div>
+    </div>
+    <label>NODE_3: Name the child who died near the Black Dahlia crime scene. (Initials only)</label>
+    <input type="text" id="input3">
+    <button onclick="checkAnswer(3)">Submit</button>
+  </div>  <div id="q4" class="question-box">
+    <div style="position:relative">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Hinterkaifeck_farm.jpg" alt="Hinterkaifeck Farm">
+      <div class="black-bar"></div>
+    </div>
+    <label>NODE_4: Locate the real coordinates of the Hinterkaifeck farm. (Decimal format)</label>
+    <input type="text" id="input4">
+    <button onclick="checkAnswer(4)">Submit</button>
+  </div>  <div id="q5" class="question-box">
+    <div style="position:relative">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/UVB-76.jpg" alt="UVB-76 Radio">
+      <div class="black-bar"></div>
+    </div>
+    <label>NODE_5: What was the last known broadcast on shortwave UVB-76 during 2010?</label>
+    <input type="text" id="input5">
+    <button onclick="checkAnswer(5)">Submit</button>
+  </div>  <div id="q6" class="question-box">
+    <div style="position:relative">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/The_end.jpg" alt="Final Key">
+      <div class="black-bar"></div>
+    </div>
+    <label>TERMINUS: What name is hidden in the last unlisted video? (Final Key)</label>
+    <input type="text" id="input6">
+    <button onclick="finalSubmit()">Submit</button>
+  </div>  <script>
+    const correctAnswers = [
+      "two bodies found",
+      "lead masks",
+      "e.s.",
+      "48.0488, 11.3764",
+      "the buzzer",
+      "progeny"
+    ];
+
+    setTimeout(() => {
+      document.getElementById("legalNotice").style.display = "none";
+      document.getElementById("q1").style.display = "flex";
+      speakQuestion("What was the first public detail released about the Lead Masks Case?");
+    }, 6000);
+
+    function checkAnswer(q) {
+      const input = document.getElementById(`input${q}`).value.trim().toLowerCase();
+      if (input === correctAnswers[q - 1]) {
+        document.getElementById(`q${q}`).style.display = "none";
+        const next = document.getElementById(`q${q + 1}`);
+        if (next) {
+          next.style.display = "flex";
+          const text = next.querySelector("label").textContent;
+          speakQuestion(text);
+        }
+      } else {
+        alert("That answer is incorrect. Try again.");
+      }
+    }
+
+    function finalSubmit() {
+      const input = document.getElementById("input6").value.trim().toLowerCase();
+      if (input === correctAnswers[5]) {
+        alert("[ACCESS GRANTED] Proceed to the final file.");
+        window.location.href = "https://youtu.be/-Q6aQhM_gI8";
+      } else {
+        alert("Incorrect. This was never for you.");
+      }
+    }
+
+    function speakQuestion(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.voice = speechSynthesis.getVoices().find(v => v.name.toLowerCase().includes("fred") || v.name.toLowerCase().includes("zarvox")) || speechSynthesis.getVoices()[0];
+      utter.rate = 0.5;
+      utter.pitch = 0.3;
+      utter.volume = 0.9;
+      speechSynthesis.speak(utter);
+    }
+  </script></body>
+      </html>
