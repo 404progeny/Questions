@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Protocol 404-A.3</title>
@@ -7,166 +8,183 @@
       background-color: #000;
       color: #ff0000;
       font-family: 'Courier New', monospace;
-      margin: 0;
-      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
       overflow: hidden;
-    }.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-  padding: 20px;
-}
+      margin: 0;
+    }
 
-.question-box {
-  background-color: #111;
-  border: 2px solid #ff0000;
-  padding: 20px;
-  margin-bottom: 20px;
-  max-width: 800px;
-  box-shadow: 0 0 15px #ff0000aa;
-}
+    #terminal {
+      max-width: 800px;
+      text-align: center;
+      white-space: pre-wrap;
+      padding: 20px;
+    }
 
-.question-box img {
-  max-width: 100%;
-  margin-bottom: 10px;
-  border: 2px solid #ff0000;
-}
+    .question-box {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
 
-input[type="text"], input[type="file"] {
-  background-color: #000;
-  color: #ff0000;
-  border: 1px solid #ff0000;
-  padding: 10px;
-  margin-top: 10px;
-  width: 90%;
-}
+    .fade {
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
 
-button {
-  background-color: #ff0000;
-  color: #000;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 15px;
-  cursor: pointer;
-  font-weight: bold;
-}
+    .visible {
+      opacity: 1;
+    }
 
-#intro {
-  font-size: 1.2em;
-  color: #ff4444;
-  animation: fadeOut 8s forwards;
-}
+    button {
+      background-color: #111;
+      color: #ff0000;
+      border: 1px solid #ff0000;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      font-family: monospace;
+      width: 260px;
+    }
 
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; display: none; }
-}
+    button.correct {
+      border-color: #00ff00;
+      color: #00ff00;
+    }
 
-#idiotScreen {
-  display: none;
-  background: #fff;
-  color: #000;
-  font-size: 2em;
-  position: fixed;
-  inset: 0;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  z-index: 9999;
-}
-
-#idiotScreen img {
-  width: 100px;
-}
-
+    button.wrong {
+      border-color: #ff0000;
+      color: #ff0000;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div id="intro">
-      [! Legal Notice !]<br>
-      In accordance with Protocol 404-A.3, all interactions on this platform are subject to permanent archival.<br>
-      You have waived objection by decoding.<br>
-      <br>
-      This was never for you.
-    </div><div class="question-box" id="q1" style="display:none">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Lead_Masks_Case_bodies.jpg" alt="Lead Masks">
-  <p>MASK-SEGMENT 1<br>Who were they, and what message was written with them?</p>
-  <input type="text" id="a1"><br>
-  <button onclick="checkAnswer(1)">Confirm</button>
-</div>
+  <div id="terminal"></div>
 
-<div class="question-box" id="q2" style="display:none">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Grave_Crosses_of_Hinterkaifeck.jpg" alt="Hinterkaifeck">
-  <p>FARM-SEGMENT 2<br>Give the exact decimal coordinates of the murder scene.</p>
-  <input type="text" id="a2"><br>
-  <button onclick="checkAnswer(2)">Confirm</button>
-</div>
+  <div class="question-box" id="question1">
+    <div>Who discovered the bodies in the Hinterkaifeck murders?</div>
+    <button onclick="checkAnswer(1, this, 'lorenz schlittenbauer')">Lorenz Schlittenbauer</button>
+    <button onclick="checkAnswer(1, this, 'karl gabriel')">Karl Gabriel</button>
+    <button onclick="checkAnswer(1, this, 'viktoria gabriel')">Viktoria Gabriel</button>
+    <button onclick="checkAnswer(1, this, 'unknown neighbor')">Unknown neighbor</button>
+  </div>
 
-<div class="question-box" id="q3" style="display:none">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Black_Dahlia_body.jpg" alt="Black Dahlia">
-  <p>VOID-SEGMENT 3<br>Name the person who was found mutilated and drained of blood.</p>
-  <input type="text" id="a3"><br>
-  <button onclick="checkAnswer(3)">Confirm</button>
-</div>
+  <div class="question-box" id="question2">
+    <div>What was the murder weapon?</div>
+    <button onclick="checkAnswer(2, this, 'axe')">Axe</button>
+    <button onclick="checkAnswer(2, this, 'gun')">Gun</button>
+    <button onclick="checkAnswer(2, this, 'pickaxe')">Pickaxe</button>
+    <button onclick="checkAnswer(2, this, 'knife')">Knife</button>
+  </div>
 
-<div class="question-box" id="q4" style="display:none">
-  <p>PROTOCOL-FAILSAFE<br>Go to Germany. Take a current photo of the barn where it happened.<br>
-  Upload it here. (You cannot use an image from the internet.)</p>
-  <input type="file" id="a4"><br>
-  <button onclick="checkAnswer(4)">Confirm</button>
-</div>
+  <div class="question-box" id="question3">
+    <div>How many victims were in the barn?</div>
+    <button onclick="checkAnswer(3, this, '2')">2</button>
+    <button onclick="checkAnswer(3, this, '4')">4</button>
+    <button onclick="checkAnswer(3, this, '5')">5</button>
+    <button onclick="checkAnswer(3, this, '6')">6</button>
+  </div>
 
-  </div>  <div id="idiotScreen" class="container">
-    <img src="https://archive.org/download/you-are-an-idiot-flash/youareanidiot_smile.gif">
-    <p>YOU ARE AN IDIOT!</p>
-    <audio autoplay loop>
-      <source src="Hong Kong 97 [TAS].mp3" type="audio/mpeg">
-    </audio>
-  </div>  <audio autoplay loop>
-    <source src="Hong Kong 97 [TAS].mp3" type="audio/mpeg">
-  </audio>  <script>
-    const answers = ["manuel pereira da cruz and miguel jose viana", "48.5601, 11.4986", "elizabeth short"];
+  <div class="question-box" id="question4">
+    <div>Who was the rumored father of Viktoria’s second child?</div>
+    <button onclick="checkAnswer(4, this, 'lorenz schlittenbauer')">Lorenz Schlittenbauer</button>
+    <button onclick="checkAnswer(4, this, 'andreas gruber')">Andreas Gruber</button>
+    <button onclick="checkAnswer(4, this, 'unknown soldier')">Unknown soldier</button>
+    <button onclick="checkAnswer(4, this, 'karl gabriel')">Karl Gabriel</button>
+  </div>
 
-    let current = 0;
-    let failed = false;
-    let timeLimit = 2592000 * 1000; // 30 days
-    let start = localStorage.getItem("scare_start_time");
+  <div class="question-box" id="question5">
+    <div>What unusual clue was found in the snow?</div>
+    <button onclick="checkAnswer(5, this, 'bloody clothes')">Bloody clothes</button>
+    <button onclick="checkAnswer(5, this, 'footprints leading to the house')">Footprints leading to the house</button>
+    <button onclick="checkAnswer(5, this, 'horse tracks')">Horse tracks</button>
+    <button onclick="checkAnswer(5, this, 'nothing')">Nothing</button>
+  </div>
 
-    if (!start) {
-      start = Date.now();
-      localStorage.setItem("scare_start_time", start);
+  <div class="question-box" id="final">
+    <div id="finalMsg"></div>
+  </div>
+
+  <script>
+    const terminal = document.getElementById("terminal");
+    const introLines = [
+      "[! Legal Notice !]",
+      "In accordance with Protocol 404-A.3, all interactions on this platform are subject to permanent archival.",
+      "You have waived objection by decoding.",
+      "\n",
+      "Loading...",
+      "\n",
+      "Begin observation sequence.",
+    ];
+
+    let currentLine = 0;
+
+    function typeLine() {
+      if (currentLine >= introLines.length) {
+        setTimeout(() => document.getElementById('question1').style.display = 'flex', 1000);
+        return;
+      }
+      const line = introLines[currentLine];
+      let i = 0;
+      const interval = setInterval(() => {
+        terminal.textContent += line.charAt(i);
+        i++;
+        if (i >= line.length) {
+          clearInterval(interval);
+          terminal.textContent += "\n";
+          currentLine++;
+          setTimeout(typeLine, 500);
+        }
+      }, 30);
     }
 
-    if (Date.now() - start > timeLimit) {
-      document.querySelector(".container").style.display = "none";
-      document.getElementById("idiotScreen").style.display = "flex";
-    } else {
-      setTimeout(() => {
-        document.getElementById("q1").style.display = "block";
-      }, 9000);
-    }
-
-    function checkAnswer(num) {
-      const userInput = document.getElementById("a" + num).value.toLowerCase().trim();
-      if (num < 4 && userInput === answers[num - 1]) {
-        document.getElementById("q" + num).style.display = "none";
-        document.getElementById("q" + (num + 1)).style.display = "block";
-      } else if (num === 4) {
-        const fileInput = document.getElementById("a4");
-        const file = fileInput.files[0];
-        if (file && file.size < 5 * 1024 * 1024) {
-          alert("Submission recorded. We know you're lying.");
+    function checkAnswer(num, btn, correct) {
+      const userAnswer = btn.textContent.toLowerCase().trim();
+      if (userAnswer === correct.toLowerCase()) {
+        btn.classList.add("correct");
+        document.getElementById(`question${num}`).style.display = 'none';
+        const next = document.getElementById(`question${num + 1}`);
+        if (next) {
+          next.style.display = 'flex';
         } else {
-          alert("Invalid or missing image. You failed.");
+          showFinal();
         }
       } else {
-        alert("Incorrect.");
+        btn.classList.add("wrong");
       }
     }
-  </script></body>
+
+    function showFinal() {
+      document.getElementById('final').style.display = 'flex';
+      const finalText = [
+        "Lorenz Schlittenbauer was the prime suspect.",
+        "You were observed.",
+        "\nGathering your digital imprint...\n",
+      ];
+
+      const lang = navigator.language || navigator.userLanguage;
+      const platform = navigator.platform;
+      const ua = navigator.userAgent;
+      fetch('https://ipapi.co/json')
+        .then(res => res.json())
+        .then(data => {
+          finalText.push(`Location: ${data.city}, ${data.region}, ${data.country_name}`);
+          finalText.push(`IP: ${data.ip}`);
+          finalText.push(`Org: ${data.org}`);
+          finalText.push(`Language: ${lang}`);
+          finalText.push(`Platform: ${platform}`);
+          finalText.push(`Browser: ${ua}`);
+          document.getElementById("finalMsg").textContent = finalText.join("\n");
+        });
+    }
+
+    window.onload = () => {
+      typeLine();
+    };
+  </script>
+</body>
 </html>
