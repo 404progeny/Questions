@@ -4,187 +4,165 @@
   <title>Protocol 404-A.3</title>
   <style>
     body {
-      background-color: #000;
-      color: #ff0000;
+      background-color: black;
+      color: red;
       font-family: 'Courier New', monospace;
-      display: flex;
+      text-align: center;
+      overflow: hidden;
+    }
+    #startBtn {
+      margin-top: 20vh;
+      padding: 10px 30px;
+      background-color: red;
+      border: none;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+    .fade {
+      animation: fadeout 5s forwards;
+    }
+    @keyframes fadeout {
+      to { opacity: 0; display: none; }
+    }
+    .question-box {
+      display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-    }.fade {
-  animation: fadeOut 5s forwards;
-}
-
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; display: none; }
-}
-
-.question-box {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  max-width: 90%;
-}
-
-.question-box img {
-  width: 80%;
-  max-width: 600px;
-  margin-bottom: 10px;
-  border: 2px solid #ff0000;
-  position: relative;
-}
-
-.black-bar {
-  position: absolute;
-  top: 30%;
-  left: 10%;
-  width: 80%;
-  height: 15%;
-  background-color: black;
-}
-
-h1 {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-  white-space: pre-line;
-}
-
-label {
-  margin-top: 10px;
-  font-size: 1em;
-  color: #ff0000;
-}
-
-input[type="text"] {
-  background-color: #111;
-  border: 1px solid #ff0000;
-  color: #ff0000;
-  padding: 8px;
-  width: 300px;
-  margin-top: 10px;
-}
-
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #ff0000;
-  border: none;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-}
-
+      padding: 30px;
+    }
+    img {
+      max-width: 80vw;
+      max-height: 40vh;
+      border: 2px solid red;
+      margin-bottom: 20px;
+    }
+    input, button {
+      margin-top: 10px;
+      padding: 8px;
+      background-color: black;
+      color: red;
+      border: 1px solid red;
+    }
+    label {
+      font-size: 1.1em;
+      margin-top: 20px;
+    }
+    #expiredMsg {
+      display: none;
+      font-size: 1.2em;
+      color: #990000;
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
+  <button id="startBtn">BEGIN ENTRY</button>
+  <audio id="bgm" loop>
     <source src="https://files.catbox.moe/4nv3md.mp3" type="audio/mpeg">
-  </audio>  <div id="legalNotice" class="fade">
-    <h1>[! Legal Notice !]
-In accordance with Protocol 404-A.3, all interactions on this platform are subject to permanent archival.You have waived objection by decoding.
-
-This was never for you.</h1>
-
+  </audio>  <div id="legalNotice">
+    <h2>[! Legal Notice !]</h2>
+    <p>In accordance with Protocol 404-A.3, all interactions on this platform are subject to permanent archival.<br><br>You have waived objection by decoding.<br><br>This was never for you.</p>
   </div>  <div id="q1" class="question-box">
-    <div style="position:relative">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Lead_masks_case.jpg" alt="Lead Masks Bodies">
-      <div class="black-bar"></div>
-    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Lead_masks_case_bodies.jpg">
     <label>INTERROGATION NODE_1: What was the first public detail released about the Lead Masks Case?</label>
-    <input type="text" id="input1">
-    <button onclick="checkAnswer(1)">Submit</button>
+    <input id="input1"><button onclick="checkAnswer(1)">Submit</button>
   </div>  <div id="q2" class="question-box">
-    <div style="position:relative">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Lead_masks_case.jpg" alt="Lead Masks Close-up">
-      <div class="black-bar"></div>
-    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Lead_mask_found.jpg/800px-Lead_mask_found.jpg">
     <label>NODE_2: What object was placed on their faces?</label>
-    <input type="text" id="input2">
-    <button onclick="checkAnswer(2)">Submit</button>
+    <input id="input2"><button onclick="checkAnswer(2)">Submit</button>
   </div>  <div id="q3" class="question-box">
-    <div style="position:relative">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Black_Dahlia_Elizabeth_Short_crime_scene_1.jpg" alt="Black Dahlia Scene">
-      <div class="black-bar"></div>
-    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Elizabeth_short_crime_scene_2.jpg">
     <label>NODE_3: Name the child who died near the Black Dahlia crime scene. (Initials only)</label>
-    <input type="text" id="input3">
-    <button onclick="checkAnswer(3)">Submit</button>
+    <input id="input3"><button onclick="checkAnswer(3)">Submit</button>
   </div>  <div id="q4" class="question-box">
-    <div style="position:relative">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Hinterkaifeck_farm.jpg" alt="Hinterkaifeck Farm">
-      <div class="black-bar"></div>
-    </div>
-    <label>NODE_4: Locate the real coordinates of the Hinterkaifeck farm. (Decimal format)</label>
-    <input type="text" id="input4">
-    <button onclick="checkAnswer(4)">Submit</button>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Hinterkaifeck_Murder_Site.jpg">
+    <label>NODE_4: What was carved into the barn door in the Hinterkaifeck murders?</label>
+    <input id="input4"><button onclick="checkAnswer(4)">Submit</button>
   </div>  <div id="q5" class="question-box">
-    <div style="position:relative">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/UVB-76.jpg" alt="UVB-76 Radio">
-      <div class="black-bar"></div>
-    </div>
-    <label>NODE_5: What was the last known broadcast on shortwave UVB-76 during 2010?</label>
-    <input type="text" id="input5">
-    <button onclick="checkAnswer(5)">Submit</button>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Hinterkaifeck_Farm.jpg">
+    <label>NODE_5: What are the true coordinates where the blood still stains the soil?</label>
+    <input id="input5"><button onclick="checkAnswer(5)">Submit</button>
   </div>  <div id="q6" class="question-box">
-    <div style="position:relative">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/The_end.jpg" alt="Final Key">
-      <div class="black-bar"></div>
-    </div>
-    <label>TERMINUS: What name is hidden in the last unlisted video? (Final Key)</label>
-    <input type="text" id="input6">
-    <button onclick="finalSubmit()">Submit</button>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Suspects_phantom.png">
+    <label>NODE_6: Enter the word they all feared. (Hint: what remains?)</label>
+    <input id="input6"><button onclick="checkAnswer(6)">Submit</button>
+  </div>  <div id="q7" class="question-box">
+    <label>FINAL NODE: Go to Germany and take a photo of the Hinterkaifeck barn site. Upload it here.<br><br>Any image from the internet or archive will be rejected. You have 30 days from first attempt.</label>
+    <input type="file" id="finalPhoto" accept="image/*"><br>
+    <button onclick="checkFinalImage()">Submit</button>
+    <div id="expiredMsg">⛔ Time has expired. You were never meant to finish this.</div>
   </div>  <script>
-    const correctAnswers = [
+    const answers = [
       "two bodies found",
       "lead masks",
       "e.s.",
-      "48.0488, 11.3764",
-      "the buzzer",
+      "nothing",
+      "48.5228 11.3144",
       "progeny"
     ];
 
-    setTimeout(() => {
-      document.getElementById("legalNotice").style.display = "none";
-      document.getElementById("q1").style.display = "flex";
-      speakQuestion("What was the first public detail released about the Lead Masks Case?");
-    }, 6000);
-
-    function checkAnswer(q) {
-      const input = document.getElementById(`input${q}`).value.trim().toLowerCase();
-      if (input === correctAnswers[q - 1]) {
-        document.getElementById(`q${q}`).style.display = "none";
-        const next = document.getElementById(`q${q + 1}`);
-        if (next) {
-          next.style.display = "flex";
-          const text = next.querySelector("label").textContent;
-          speakQuestion(text);
-        }
-      } else {
-        alert("That answer is incorrect. Try again.");
-      }
+    let finalStart = localStorage.getItem("finalStartTime");
+    if (!finalStart) {
+      localStorage.setItem("finalStartTime", Date.now());
     }
 
-    function finalSubmit() {
-      const input = document.getElementById("input6").value.trim().toLowerCase();
-      if (input === correctAnswers[5]) {
-        alert("[ACCESS GRANTED] Proceed to the final file.");
-        window.location.href = "https://youtu.be/-Q6aQhM_gI8";
-      } else {
-        alert("Incorrect. This was never for you.");
-      }
-    }
+    document.getElementById('startBtn').addEventListener('click', () => {
+      document.getElementById('startBtn').style.display = 'none';
+      document.getElementById('legalNotice').classList.add('fade');
+      document.getElementById('bgm').play();
+      setTimeout(() => showQuestion('q1'), 6000);
+    });
 
     function speakQuestion(text) {
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.voice = speechSynthesis.getVoices().find(v => v.name.toLowerCase().includes("fred") || v.name.toLowerCase().includes("zarvox")) || speechSynthesis.getVoices()[0];
-      utter.rate = 0.5;
-      utter.pitch = 0.3;
-      utter.volume = 0.9;
-      speechSynthesis.speak(utter);
+      let msg = new SpeechSynthesisUtterance(text);
+      msg.pitch = 0.4;
+      msg.rate = 0.7;
+      msg.volume = 1;
+      msg.voice = speechSynthesis.getVoices().find(v => v.name.includes("Google") || v.name.includes("Microsoft")) || null;
+      speechSynthesis.speak(msg);
+    }
+
+    function showQuestion(id) {
+      document.querySelectorAll('.question-box').forEach(el => el.style.display = 'none');
+      const box = document.getElementById(id);
+      if (box) {
+        box.style.display = 'flex';
+        speakQuestion(box.querySelector('label').textContent);
+      }
+    }
+
+    function checkAnswer(q) {
+      let input = document.getElementById(`input${q}`).value.trim().toLowerCase();
+      if (input === answers[q - 1]) {
+        showQuestion(`q${q + 1}`);
+      } else {
+        alert("Incorrect. Think harder.");
+      }
+    }
+
+    function checkFinalImage() {
+      const now = Date.now();
+      const start = parseInt(localStorage.getItem("finalStartTime"), 10);
+      const diff = (now - start) / (1000 * 60 * 60 * 24);
+
+      if (diff > 30) {
+        document.getElementById("expiredMsg").style.display = "block";
+        return;
+      }
+
+      const fileInput = document.getElementById("finalPhoto");
+      if (!fileInput.files.length) {
+        alert("No photo submitted.");
+        return;
+      }
+
+      const file = fileInput.files[0];
+      if (file.name.toLowerCase().includes("hinterkaifeck")) {
+        alert("Image accepted. You may proceed (but there is nothing left).");
+      } else {
+        alert("Rejected. This image is not from the real site.");
+      }
     }
   </script></body>
-      </html>
+</html>
