@@ -1,155 +1,172 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>This Was Never For You</title>
+  <title>Protocol 404-A.3</title>
   <style>
     body {
-      background-color: black;
-      color: red;
+      background-color: #000;
+      color: #ff0000;
       font-family: 'Courier New', monospace;
       margin: 0;
       padding: 0;
-      text-align: center;
-    }
-    .container {
-      margin: 40px auto;
-      width: 90%;
-      max-width: 800px;
-    }
-    .question {
-      display: none;
-      margin-top: 40px;
-    }
-    .question img {
-      max-width: 100%;
-      height: auto;
-      border: 2px solid red;
-    }
-    input[type="text"] {
-      padding: 10px;
-      background: #111;
-      color: red;
-      border: 1px solid red;
-      width: 80%;
-      margin-top: 10px;
-    }
-    #finalUpload {
-      display: none;
-    }
-    #warning {
-      margin-top: 100px;
-      font-size: 1.2em;
-      animation: fadeOut 6s forwards;
-    }
-    #expired {
-      display: none;
-      margin-top: 100px;
-      font-size: 2em;
-      color: red;
-      background-color: black;
-    }
-    #idiotVideo {
-      width: 100%;
-      height: 500px;
-      border: none;
-    }
-    @keyframes fadeOut {
-      0% {opacity: 1;}
-      100% {opacity: 0; display: none;}
-    }
+      overflow: hidden;
+    }.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.question-box {
+  background-color: #111;
+  border: 2px solid #ff0000;
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 800px;
+  box-shadow: 0 0 15px #ff0000aa;
+}
+
+.question-box img {
+  max-width: 100%;
+  margin-bottom: 10px;
+  border: 2px solid #ff0000;
+}
+
+input[type="text"], input[type="file"] {
+  background-color: #000;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  padding: 10px;
+  margin-top: 10px;
+  width: 90%;
+}
+
+button {
+  background-color: #ff0000;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#intro {
+  font-size: 1.2em;
+  color: #ff4444;
+  animation: fadeOut 8s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}
+
+#idiotScreen {
+  display: none;
+  background: #fff;
+  color: #000;
+  font-size: 2em;
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+#idiotScreen img {
+  width: 100px;
+}
+
   </style>
 </head>
 <body>
-<audio autoplay loop id="bgAudio">
-  <source src="hk97.mp3" type="audio/mpeg">
-</audio><div id="warning">
-  [! Legal Notice !]<br>
-  In accordance with Protocol 404-A.3, all interactions on this platform are subject to permanent archival.<br><br>
-  You have waived objection by decoding.<br>
-  This was never for you.
-</div><div id="expired">
-  <iframe id="idiotVideo" src="https://www.youtube.com/embed/6n3pFFPSlW4?autoplay=1" allow="autoplay"></iframe>
-</div><div class="container" id="mainContent">
-  <div id="q1" class="question">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Lead_Masks_Case_victims.jpg">
-    <h2>Identify the strange object placed on the victims' faces.</h2>
-    <input type="text" oninput="checkAnswer(1, 'lead mask')">
-  </div>  <div id="q2" class="question">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Isdal_woman_reconstruction.jpg">
-    <h2>What was the nickname given to the unidentified woman found in Norway?</h2>
-    <input type="text" oninput="checkAnswer(2, 'isdal woman')">
-  </div>  <div id="q3" class="question">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Black_Dahlia_murder.jpg">
-    <h2>What name did the media give to this infamous victim?</h2>
-    <input type="text" oninput="checkAnswer(3, 'black dahlia')">
-  </div>  <div id="q4" class="question">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Hinterkaifeck_Sketch.jpg">
-    <h2>Give the exact decimal coordinates of this location.</h2>
-    <input type="text" oninput="checkAnswer(4, '48.5603, 11.4958')">
-  </div>  <div id="q5" class="question">
-    <h2>Go to Germany and take a photo of the Hinterkaifeck barn. Upload it here.</h2>
-    <input type="file" id="finalUpload" accept="image/*">
-    <p>Only an authentic recent photo will be accepted. Old images from the internet will be denied.</p>
-  </div>
-</div><script>
-let currentQuestion = 0;
-let voices = [
-  "They wore masks of metal... Why?",
-  "She burned. Yet no one knew her name...",
-  "She was cut in half... and smiled.",
-  "The barn still echoes. Where is it exactly?",
-  "You are the witness now. Submit proof."
-];
+  <div class="container">
+    <div id="intro">
+      [! Legal Notice !]<br>
+      In accordance with Protocol 404-A.3, all interactions on this platform are subject to permanent archival.<br>
+      You have waived objection by decoding.<br>
+      <br>
+      This was never for you.
+    </div><div class="question-box" id="q1" style="display:none">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Lead_Masks_Case_bodies.jpg" alt="Lead Masks">
+  <p>MASK-SEGMENT 1<br>Who were they, and what message was written with them?</p>
+  <input type="text" id="a1"><br>
+  <button onclick="checkAnswer(1)">Confirm</button>
+</div>
 
-function startQuestions() {
-  const deadline = 30 * 24 * 60 * 60 * 1000;
-  let startTime = localStorage.getItem("start_404puzzle");
-  if (!startTime) {
-    startTime = Date.now();
-    localStorage.setItem("start_404puzzle", startTime);
-  }
-  const elapsed = Date.now() - parseInt(startTime);
-  if (elapsed > deadline) {
-    document.getElementById("mainContent").style.display = "none";
-    document.getElementById("warning").style.display = "none";
-    document.getElementById("expired").style.display = "block";
-    return;
-  }
-  setTimeout(() => {
-    document.getElementById('warning').style.display = 'none';
-    showQuestion(1);
-  }, 7000);
-}
+<div class="question-box" id="q2" style="display:none">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Grave_Crosses_of_Hinterkaifeck.jpg" alt="Hinterkaifeck">
+  <p>FARM-SEGMENT 2<br>Give the exact decimal coordinates of the murder scene.</p>
+  <input type="text" id="a2"><br>
+  <button onclick="checkAnswer(2)">Confirm</button>
+</div>
 
-function showQuestion(n) {
-  const q = document.getElementById(`q${n}`);
-  if (q) {
-    q.style.display = 'block';
-    const utter = new SpeechSynthesisUtterance(voices[n - 1]);
-    utter.pitch = 0.6;
-    utter.rate = 0.8;
-    utter.volume = 0.8;
-    speechSynthesis.speak(utter);
-  }
-}
+<div class="question-box" id="q3" style="display:none">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Black_Dahlia_body.jpg" alt="Black Dahlia">
+  <p>VOID-SEGMENT 3<br>Name the person who was found mutilated and drained of blood.</p>
+  <input type="text" id="a3"><br>
+  <button onclick="checkAnswer(3)">Confirm</button>
+</div>
 
-function checkAnswer(qNum, answer) {
-  const input = document.querySelector(`#q${qNum} input[type='text']`);
-  if (input.value.toLowerCase().trim() === answer) {
-    document.getElementById(`q${qNum}`).style.display = 'none';
-    if (qNum < 4) {
-      showQuestion(qNum + 1);
-    } else {
-      document.getElementById(`q${qNum + 1}`).style.display = 'block';
-      const utter = new SpeechSynthesisUtterance(voices[4]);
-      utter.pitch = 0.6;
-      utter.rate = 0.7;
-      utter.volume = 0.8;
-      speechSynthesis.speak(utter);
+<div class="question-box" id="q4" style="display:none">
+  <p>PROTOCOL-FAILSAFE<br>Go to Germany. Take a current photo of the barn where it happened.<br>
+  Upload it here. (You cannot use an image from the internet.)</p>
+  <input type="file" id="a4"><br>
+  <button onclick="checkAnswer(4)">Confirm</button>
+</div>
+
+  </div>  <div id="idiotScreen" class="container">
+    <img src="https://archive.org/download/you-are-an-idiot-flash/youareanidiot_smile.gif">
+    <p>YOU ARE AN IDIOT!</p>
+    <audio autoplay loop>
+      <source src="Hong Kong 97 [TAS].mp3" type="audio/mpeg">
+    </audio>
+  </div>  <audio autoplay loop>
+    <source src="Hong Kong 97 [TAS].mp3" type="audio/mpeg">
+  </audio>  <script>
+    const answers = ["manuel pereira da cruz and miguel jose viana", "48.5601, 11.4986", "elizabeth short"];
+
+    let current = 0;
+    let failed = false;
+    let timeLimit = 2592000 * 1000; // 30 days
+    let start = localStorage.getItem("scare_start_time");
+
+    if (!start) {
+      start = Date.now();
+      localStorage.setItem("scare_start_time", start);
     }
-  }
-}
 
-window.onload = startQuestions;
-</script></body>
+    if (Date.now() - start > timeLimit) {
+      document.querySelector(".container").style.display = "none";
+      document.getElementById("idiotScreen").style.display = "flex";
+    } else {
+      setTimeout(() => {
+        document.getElementById("q1").style.display = "block";
+      }, 9000);
+    }
+
+    function checkAnswer(num) {
+      const userInput = document.getElementById("a" + num).value.toLowerCase().trim();
+      if (num < 4 && userInput === answers[num - 1]) {
+        document.getElementById("q" + num).style.display = "none";
+        document.getElementById("q" + (num + 1)).style.display = "block";
+      } else if (num === 4) {
+        const fileInput = document.getElementById("a4");
+        const file = fileInput.files[0];
+        if (file && file.size < 5 * 1024 * 1024) {
+          alert("Submission recorded. We know you're lying.");
+        } else {
+          alert("Invalid or missing image. You failed.");
+        }
+      } else {
+        alert("Incorrect.");
+      }
+    }
+  </script></body>
 </html>
