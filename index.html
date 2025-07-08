@@ -1,168 +1,155 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Protocol 404-A.3</title>
+  <title>This Was Never For You</title>
   <style>
     body {
       background-color: black;
       color: red;
       font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
       text-align: center;
-      overflow: hidden;
     }
-    #startBtn {
-      margin-top: 20vh;
-      padding: 10px 30px;
-      background-color: red;
-      border: none;
-      font-size: 1.2em;
-      cursor: pointer;
+    .container {
+      margin: 40px auto;
+      width: 90%;
+      max-width: 800px;
     }
-    .fade {
-      animation: fadeout 5s forwards;
-    }
-    @keyframes fadeout {
-      to { opacity: 0; display: none; }
-    }
-    .question-box {
+    .question {
       display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
+      margin-top: 40px;
     }
-    img {
-      max-width: 80vw;
-      max-height: 40vh;
+    .question img {
+      max-width: 100%;
+      height: auto;
       border: 2px solid red;
-      margin-bottom: 20px;
     }
-    input, button {
-      margin-top: 10px;
-      padding: 8px;
-      background-color: black;
+    input[type="text"] {
+      padding: 10px;
+      background: #111;
       color: red;
       border: 1px solid red;
+      width: 80%;
+      margin-top: 10px;
     }
-    label {
-      font-size: 1.1em;
-      margin-top: 20px;
-    }
-    #expiredMsg {
+    #finalUpload {
       display: none;
+    }
+    #warning {
+      margin-top: 100px;
       font-size: 1.2em;
-      color: #990000;
-      margin-top: 30px;
+      animation: fadeOut 6s forwards;
+    }
+    #expired {
+      display: none;
+      margin-top: 100px;
+      font-size: 2em;
+      color: red;
+      background-color: black;
+    }
+    #idiotVideo {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+    @keyframes fadeOut {
+      0% {opacity: 1;}
+      100% {opacity: 0; display: none;}
     }
   </style>
 </head>
 <body>
-  <button id="startBtn">BEGIN ENTRY</button>
-  <audio id="bgm" loop>
-    <source src="https://files.catbox.moe/4nv3md.mp3" type="audio/mpeg">
-  </audio>  <div id="legalNotice">
-    <h2>[! Legal Notice !]</h2>
-    <p>In accordance with Protocol 404-A.3, all interactions on this platform are subject to permanent archival.<br><br>You have waived objection by decoding.<br><br>This was never for you.</p>
-  </div>  <div id="q1" class="question-box">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Lead_masks_case_bodies.jpg">
-    <label>INTERROGATION NODE_1: What was the first public detail released about the Lead Masks Case?</label>
-    <input id="input1"><button onclick="checkAnswer(1)">Submit</button>
-  </div>  <div id="q2" class="question-box">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Lead_mask_found.jpg/800px-Lead_mask_found.jpg">
-    <label>NODE_2: What object was placed on their faces?</label>
-    <input id="input2"><button onclick="checkAnswer(2)">Submit</button>
-  </div>  <div id="q3" class="question-box">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Elizabeth_short_crime_scene_2.jpg">
-    <label>NODE_3: Name the child who died near the Black Dahlia crime scene. (Initials only)</label>
-    <input id="input3"><button onclick="checkAnswer(3)">Submit</button>
-  </div>  <div id="q4" class="question-box">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Hinterkaifeck_Murder_Site.jpg">
-    <label>NODE_4: What was carved into the barn door in the Hinterkaifeck murders?</label>
-    <input id="input4"><button onclick="checkAnswer(4)">Submit</button>
-  </div>  <div id="q5" class="question-box">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Hinterkaifeck_Farm.jpg">
-    <label>NODE_5: What are the true coordinates where the blood still stains the soil?</label>
-    <input id="input5"><button onclick="checkAnswer(5)">Submit</button>
-  </div>  <div id="q6" class="question-box">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Suspects_phantom.png">
-    <label>NODE_6: Enter the word they all feared. (Hint: what remains?)</label>
-    <input id="input6"><button onclick="checkAnswer(6)">Submit</button>
-  </div>  <div id="q7" class="question-box">
-    <label>FINAL NODE: Go to Germany and take a photo of the Hinterkaifeck barn site. Upload it here.<br><br>Any image from the internet or archive will be rejected. You have 30 days from first attempt.</label>
-    <input type="file" id="finalPhoto" accept="image/*"><br>
-    <button onclick="checkFinalImage()">Submit</button>
-    <div id="expiredMsg">⛔ Time has expired. You were never meant to finish this.</div>
-  </div>  <script>
-    const answers = [
-      "two bodies found",
-      "lead masks",
-      "e.s.",
-      "nothing",
-      "48.5228 11.3144",
-      "progeny"
-    ];
+<audio autoplay loop id="bgAudio">
+  <source src="hk97.mp3" type="audio/mpeg">
+</audio><div id="warning">
+  [! Legal Notice !]<br>
+  In accordance with Protocol 404-A.3, all interactions on this platform are subject to permanent archival.<br><br>
+  You have waived objection by decoding.<br>
+  This was never for you.
+</div><div id="expired">
+  <iframe id="idiotVideo" src="https://www.youtube.com/embed/6n3pFFPSlW4?autoplay=1" allow="autoplay"></iframe>
+</div><div class="container" id="mainContent">
+  <div id="q1" class="question">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Lead_Masks_Case_victims.jpg">
+    <h2>Identify the strange object placed on the victims' faces.</h2>
+    <input type="text" oninput="checkAnswer(1, 'lead mask')">
+  </div>  <div id="q2" class="question">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Isdal_woman_reconstruction.jpg">
+    <h2>What was the nickname given to the unidentified woman found in Norway?</h2>
+    <input type="text" oninput="checkAnswer(2, 'isdal woman')">
+  </div>  <div id="q3" class="question">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Black_Dahlia_murder.jpg">
+    <h2>What name did the media give to this infamous victim?</h2>
+    <input type="text" oninput="checkAnswer(3, 'black dahlia')">
+  </div>  <div id="q4" class="question">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Hinterkaifeck_Sketch.jpg">
+    <h2>Give the exact decimal coordinates of this location.</h2>
+    <input type="text" oninput="checkAnswer(4, '48.5603, 11.4958')">
+  </div>  <div id="q5" class="question">
+    <h2>Go to Germany and take a photo of the Hinterkaifeck barn. Upload it here.</h2>
+    <input type="file" id="finalUpload" accept="image/*">
+    <p>Only an authentic recent photo will be accepted. Old images from the internet will be denied.</p>
+  </div>
+</div><script>
+let currentQuestion = 0;
+let voices = [
+  "They wore masks of metal... Why?",
+  "She burned. Yet no one knew her name...",
+  "She was cut in half... and smiled.",
+  "The barn still echoes. Where is it exactly?",
+  "You are the witness now. Submit proof."
+];
 
-    let finalStart = localStorage.getItem("finalStartTime");
-    if (!finalStart) {
-      localStorage.setItem("finalStartTime", Date.now());
+function startQuestions() {
+  const deadline = 30 * 24 * 60 * 60 * 1000;
+  let startTime = localStorage.getItem("start_404puzzle");
+  if (!startTime) {
+    startTime = Date.now();
+    localStorage.setItem("start_404puzzle", startTime);
+  }
+  const elapsed = Date.now() - parseInt(startTime);
+  if (elapsed > deadline) {
+    document.getElementById("mainContent").style.display = "none";
+    document.getElementById("warning").style.display = "none";
+    document.getElementById("expired").style.display = "block";
+    return;
+  }
+  setTimeout(() => {
+    document.getElementById('warning').style.display = 'none';
+    showQuestion(1);
+  }, 7000);
+}
+
+function showQuestion(n) {
+  const q = document.getElementById(`q${n}`);
+  if (q) {
+    q.style.display = 'block';
+    const utter = new SpeechSynthesisUtterance(voices[n - 1]);
+    utter.pitch = 0.6;
+    utter.rate = 0.8;
+    utter.volume = 0.8;
+    speechSynthesis.speak(utter);
+  }
+}
+
+function checkAnswer(qNum, answer) {
+  const input = document.querySelector(`#q${qNum} input[type='text']`);
+  if (input.value.toLowerCase().trim() === answer) {
+    document.getElementById(`q${qNum}`).style.display = 'none';
+    if (qNum < 4) {
+      showQuestion(qNum + 1);
+    } else {
+      document.getElementById(`q${qNum + 1}`).style.display = 'block';
+      const utter = new SpeechSynthesisUtterance(voices[4]);
+      utter.pitch = 0.6;
+      utter.rate = 0.7;
+      utter.volume = 0.8;
+      speechSynthesis.speak(utter);
     }
+  }
+}
 
-    document.getElementById('startBtn').addEventListener('click', () => {
-      document.getElementById('startBtn').style.display = 'none';
-      document.getElementById('legalNotice').classList.add('fade');
-      document.getElementById('bgm').play();
-      setTimeout(() => showQuestion('q1'), 6000);
-    });
-
-    function speakQuestion(text) {
-      let msg = new SpeechSynthesisUtterance(text);
-      msg.pitch = 0.4;
-      msg.rate = 0.7;
-      msg.volume = 1;
-      msg.voice = speechSynthesis.getVoices().find(v => v.name.includes("Google") || v.name.includes("Microsoft")) || null;
-      speechSynthesis.speak(msg);
-    }
-
-    function showQuestion(id) {
-      document.querySelectorAll('.question-box').forEach(el => el.style.display = 'none');
-      const box = document.getElementById(id);
-      if (box) {
-        box.style.display = 'flex';
-        speakQuestion(box.querySelector('label').textContent);
-      }
-    }
-
-    function checkAnswer(q) {
-      let input = document.getElementById(`input${q}`).value.trim().toLowerCase();
-      if (input === answers[q - 1]) {
-        showQuestion(`q${q + 1}`);
-      } else {
-        alert("Incorrect. Think harder.");
-      }
-    }
-
-    function checkFinalImage() {
-      const now = Date.now();
-      const start = parseInt(localStorage.getItem("finalStartTime"), 10);
-      const diff = (now - start) / (1000 * 60 * 60 * 24);
-
-      if (diff > 30) {
-        document.getElementById("expiredMsg").style.display = "block";
-        return;
-      }
-
-      const fileInput = document.getElementById("finalPhoto");
-      if (!fileInput.files.length) {
-        alert("No photo submitted.");
-        return;
-      }
-
-      const file = fileInput.files[0];
-      if (file.name.toLowerCase().includes("hinterkaifeck")) {
-        alert("Image accepted. You may proceed (but there is nothing left).");
-      } else {
-        alert("Rejected. This image is not from the real site.");
-      }
-    }
-  </script></body>
+window.onload = startQuestions;
+</script></body>
 </html>
